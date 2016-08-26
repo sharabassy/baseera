@@ -1,3 +1,15 @@
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static "polls/style.css"%}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+
+		<div class="navbar-header">
+			<a class="navbar-brand" href="{% url "polls:index" %}">Home</a>
+		</div>
+	</div>
+</nav>
 <h1>{{question.question_text}}</h1>
 {%if error_message%}<p><strong>{{error_message}}</strong></p>{% endif %}
 
