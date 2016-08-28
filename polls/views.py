@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -42,7 +43,21 @@ def vote(request,question_id):
 class QuestionCreate(CreateView):
 	model=Question
 	fields=['question_text','pub_date']
-		   
+
+class QuestionUpdate(UpdateView):
+	model=Question
+	fields=['question_text','pub_date']
+
+class QuestionDelete(DeleteView):
+	model=Question
+	success_url = reverse_lazy('polls:index')
+
+def mydel (request,question_id):
+	question=get_object_or_404(Question,pk=question_id)
+	question.delete()
+	latest_question_list=Question.objects.filter( pub_date__lte=timezone.now() ).order_by('-pub_date')[:5]
+	return render(request,'polls/index.html',{'latest_question_list':latest_question_list})
+
 
 
 

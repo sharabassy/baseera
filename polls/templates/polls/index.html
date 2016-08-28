@@ -21,7 +21,14 @@
 {%if latest_question_list %}
 	<ul>
 		{%for question in latest_question_list%}
-		<li><a href={% url 'polls:detail' question.id%}>{{question.question_text}}</a></li>
+		<li>
+			<a href={% url 'polls:detail' question.id%}>{{question.question_text}}</a>
+			<a href={% url 'polls:mydel' question.id %}>
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Delete Question</a>
+			<a href="{% url 'polls:question-update' question.id %}">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Update Question</a>
+		</li>
+
 		{%endfor%}
 	</ul>
 {%else%}
