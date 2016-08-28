@@ -9,6 +9,14 @@
 			<a class="navbar-brand" href="{% url "polls:index" %}">Home</a>
 		</div>
 	</div>
+
+	<ul class="nav navbar-nav navbar-right">
+		<li>
+			<a href="{% url 'polls:question-add' %}">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Question
+			</a>
+		</li>
+	</ul>
 </nav>
 {%if latest_question_list %}
 	<ul>
